@@ -1,0 +1,93 @@
+Thanks to  for this one, had a blast solving it. 
+
+Go check it out on codewars!
+Link above.
+
+function parseKidList( csv ) {
+
+  let temp = [], arr = [], final = [];
+  
+  /*class student {
+    constructor (name, gender, bday) {
+      this.name = name;
+      this.gender = gender == 'm' ? '(M)' : '(F)';
+      this.bday = bday;
+    }
+  }*/
+  //originally wanted to go the route of objects
+  
+  temp = csv.split('\n');
+  
+  for (let i in temp) {
+  
+    arr = [];
+  
+    let curr = temp[i], currArr = curr.split(',');
+    
+    for (let j in currArr) {
+    
+      //capitalize the name
+      if (currArr.indexOf(currArr[j]) == 0) {
+        
+        arr.push(currArr[j].toUpperCase());
+        
+      }
+      
+      //handle the birthday
+      if (currArr.indexOf(currArr[j]) == 1) {
+        
+        //handle the zeros on calendar events less than 10, per the instructions
+        let bdayHolder = currArr[j].split('/');
+        
+        for (let x in bdayHolder) {
+          
+          if (bdayHolder[x] < 10) {
+            
+            bdayHolder[x] = '0' + bdayHolder[x];
+            
+          }
+          
+        }
+        
+        //bring back together in standar format, now with zeros
+        arr.push(bdayHolder.join('/'));
+        
+      } 
+      
+      //handle the gender
+      if (currArr.indexOf(currArr[j]) == 2) {
+        
+        if (currArr[j] == 'f') {
+        
+          arr.push('(F)');
+          
+        } else if (currArr[j] == 'm') {
+        
+          arr.push('(M)');
+        
+        }
+        
+      }
+      
+    }
+    
+    //switch the positions of the middle and last elements in the array for formatting
+    let store = arr[1]; 
+    arr[1] = arr[2]; 
+    arr[2] = store;
+    
+    //throw that rascal into the final array before clearing out the arr variable at the top of the loop
+    final.push(arr.join(' '));
+    
+  }
+  
+  return final;
+
+}
+
+function sortByNames (kids) {
+  
+  //alphabetize the list
+  return kids.sort(); 
+  
+}
