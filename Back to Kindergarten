@@ -1,9 +1,9 @@
-Thanks to  for this one, had a blast solving it. 
+Thanks to ZozoFouchtra for this one, had a blast solving it. 
 
 Go check it out on codewars!
-Link above.
+https://www.codewars.com/kata/back-to-kindergarten-eeeeeeasy/javascript
 
-function parseKidList( csv ) {
+function parseKidList (csv) {
 
   let temp = [], arr = [], final = [];
   
