@@ -1,0 +1,79 @@
+Thanks to A.Partridge for this one, had a blast solving it. 
+
+Go check it out on codewars!
+https://www.codewars.com/kata/back-to-kindergarten-eeeeeeasy/javascript
+
+
+function high (x) {
+  
+  const obj = {
+    a: 1,
+    b: 2,
+    c: 3,
+    d: 4,
+    e: 5,
+    f: 6,
+    g: 7,
+    h: 8,
+    i: 9,
+    j: 10,
+    k: 11,
+    l: 12,
+    m: 13,
+    n: 14,
+    o: 15,
+    p: 16,
+    q: 17,
+    r: 18,
+    s: 19,
+    t: 20,
+    u: 21,
+    v: 22,
+    w: 23,
+    x: 24,
+    y: 25,
+    z: 26
+  }
+  
+  let temp, arr = [], tempArr = [], split = x.split(' ');
+  
+  function indexOfMax(arr) {
+    //handle null case
+    if (arr.length === 0) {
+        return -1;
+    }
+    
+    //track the largest
+    var max = arr[0];
+    var maxIndex = 0;
+
+    for (var i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            maxIndex = i;
+            max = arr[i];
+        }
+    }
+
+    return maxIndex;
+  }
+  
+  //dive in
+  for (let i in split) {
+    //store current string
+    temp = split[i].toLowerCase();
+    for (let j in temp) {
+      //get corrolating number from obj
+      tempArr.push(obj[temp[j]]);
+    }
+    //add up that words score
+    let red = tempArr.reduce((a, b) => a + b);
+    arr.push(red);
+    //reset
+    tempArr = [];
+  }
+  
+  let ans =  indexOfMax(arr);
+  
+  return split[ans];
+  
+}
