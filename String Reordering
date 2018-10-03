@@ -1,0 +1,45 @@
+Shout out to Vatsan for creating this one, I had a blast!!
+
+Go check it out on codewars @ 
+https://www.codewars.com/kata/string-reordering/javascript
+
+function sentence (List) {
+  
+  let arr = [];
+  
+  //isolate keys and convert to numbers for sorting
+  for (let i in List) {
+    let temp = Number(Object.keys(List[i]));
+    arr.push(temp);
+        
+  }
+  
+  //order them by number
+  arr.sort((a, b) => a - b);
+  
+  let result = '', temp;
+  
+  //loop through numbered keys
+  for (let x in arr) {  
+  
+    //set current key back to a string
+    temp = arr[x].toString();
+    
+    //loop through original List again
+    for (let y in List) {
+    
+      //set current key
+      let key = Object.keys(List[y]);
+      
+      //check for match
+      if (temp == key) {
+      
+        //add value to output string
+        result += List[y][key] + ' ';
+      }
+    }
+  }
+  
+  //return string, minus the final added space
+  return result.slice(0, -1);
+}
