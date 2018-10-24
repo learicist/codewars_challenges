@@ -1,0 +1,48 @@
+//Thanks to St3f4n for this one, had a blast solving it. 
+
+//Go check it out on codewars!
+//https://www.codewars.com/kata/583203e6eb35d7980400002a
+
+/*Description:
+Given an array (arr) as an argument complete the function countSmileys that should return the total number of smiling faces.
+
+Rules for a smiling face:
+-Each smiley face must contain a valid pair of eyes. Eyes can be marked as : or ;
+-A smiley face can have a nose but it does not have to. Valid characters for a nose are - or ~
+-Every smiling face must have a smiling mouth that should be marked with either ) or D.
+No additional characters are allowed except for those mentioned.
+Valid smiley face examples:
+:) :D ;-D :~)
+Invalid smiley faces:
+;( :> :} :] 
+*/
+
+function countSmileys (arr) {
+  
+  //create a reference object with RegEx values to speed up the process
+  let validFaces = {
+    eyes: /[;:]/,
+    nose: /[-~]/,
+    mouth: /[)D]/
+  }
+
+  //test for invalid faces regardless of nose to shorten to list of options
+  let temp =  arr
+    .filter(a => 
+      validFaces.eyes.test(a) 
+      && 
+      validFaces.mouth.test(a)
+      &&
+      a.length <= 3);
+  
+  //if the face has a nose, check it for validity. then return the length of the remaining candidate array
+  return temp.filter(function (a) { 
+    if (a.length == 3) {
+       return validFaces.nose.test(a); 
+    } else {
+      return a;
+    }
+  }).length;
+  
+  //No For Loops!! ;~D
+}
